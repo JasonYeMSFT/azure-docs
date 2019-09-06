@@ -210,6 +210,47 @@ If you receive this error message, it's possible that you don't have the needed 
 
 If you do see the account keys, file an issue on GitHub so we can help you resolve the issue.
 
+## Error occurred while adding new connection: TypeError: Cannot read property 'version' of undefined
+
+If you receive this error message when trying to add a custom connection via a connection string, it's possible that the connection data stored in the local credential is corrupted. To help us diagnose the cause of it, please go to Help → Toggle Developer Tools and report the warnings in the console to us, if there is any.
+To work around this issue and add the connection, you can try deleting your existing local connection and then re-adding them.
+
+Note: By following these steps, you will lose all your current custom connections. Once the issue is resolved, you can add them back.
+
+You need to remove the corrupted connection data first. Depending on your operating system, the steps will be different.
+
+Windows:
+
+1. In start menu, search for 'Credential Manager' and open it
+2. In the opend window, go to 'Windows Credentials'
+3. Under 'Generic Credentials' look for entries starting with 'StorageExplorer_CustomConnections_Accounts_v1/'
+4. Remove all such entries
+
+MacOS:
+
+1. Go to Spotlight (Command-Space bar) and search Keychain Access
+2. Look for entries with name 'StorageExplorer_CustomConnections_Accounts_v1'
+3. Delete all such entries
+
+Linux:
+
+Linux doesn't necessarily have a GUI tool for managing local credentials. You may need to install a GUI tool to perform the following steps.
+
+1. nstall seahorse, an open source GUI tool for managing linux local credentials
+2. Run seahorse and go to Passwords → Login page
+3. Look for entries starting with 'StorageExplorer_CustomConnections_Accounts_v1/'
+4. Delete all such entries
+
+Then you can
+
+1. Start Storage Explorer, in the top menu, go to Help → Toggle Developer Tools
+2. In the opened window, go to Application tab → Local Storage (left hand side) → file://
+3. Delete the entry with key 'StorageExplorer_CustomConnections_Accounts_v1'
+4. Retry adding the connections you failed to add
+5. Re-add other connections
+
+If you are still encountering the error after performing these steps or you have any findings about why this happens, you are more than welcome to open an issue on our Github page.
+
 ## Issues with SAS URL
 
 If you're connecting to a service using a SAS URL and experiencing this error:
